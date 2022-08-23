@@ -1,4 +1,4 @@
-package com.cnkaptan.example.composesideeffects
+package com.cnkaptan.example.composesideeffects.effects
 
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.cnkaptan.example.composesideeffects.selectRandomText
 
 
 @Composable
@@ -43,7 +44,7 @@ fun LaunchEffectExample(name: String, onNameChange: () -> Unit = {}) {
     LaunchedEffect(key1 = name, block = {
         Log.e("LaunchedEffectExample", "TimerStarted")
         try {
-            startTimer(5000L) { // start a timer for 5 secs
+            com.cnkaptan.example.composesideeffects.startTimer(5000L) { // start a timer for 5 secs
                 Log.e("LaunchEffectExample", "Timer ended")
             }
         } catch (ex: Exception) {
@@ -54,7 +55,7 @@ fun LaunchEffectExample(name: String, onNameChange: () -> Unit = {}) {
 
 
 @Composable
-fun TimerScreen1() {
+fun LE_TimerScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -86,8 +87,8 @@ fun Timer(timerDuration: Long) {
     LaunchedEffect(key1 = timerDuration, block = {
         Log.e("Timer","Timer Started")
         try {
-            startTimer(timerDuration) {
-                Log.e("Timer","Timer ended")
+            com.cnkaptan.example.composesideeffects.startTimer(timerDuration) {
+                Log.e("Timer", "Timer ended")
             }
         } catch (ex: Exception) {
             Log.e("Timer","timer cancelled")
